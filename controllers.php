@@ -26,6 +26,7 @@ $c_aksi_login = function () {
     session_set('user', [
         'nama' => $user['nama'],
         'username' => $user['username'],
+        'level' => $user['level'],
     ]);
 
     session_flash('messages', ['Login berhasil.']);
