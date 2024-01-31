@@ -16,7 +16,11 @@ function router_run()
     $method = $_SERVER['REQUEST_METHOD'];
 
     if(is_null($path)) {
-        redirect('/');
+        if (str_ends_with($_SERVER['REQUEST_URI'], 'index.php')) {
+            redirect('/');
+        } else {
+            redirect('index.php/');
+        }
     }
 
     [$controller, $middlewares] = $rute[$path][$method] ?? null;
