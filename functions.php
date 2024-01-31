@@ -33,6 +33,11 @@ function session_set($key, $val)
     $_SESSION[$key] = $val;
 }
 
+function session_remove($key)
+{
+    unset($_SERVER[$key]);
+}
+
 function session_get($key, $default = [])
 {
     return $_SESSION['_flash'][$key] ?? $_SESSION[$key] ?? $default;
