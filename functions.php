@@ -14,17 +14,31 @@ function dd($val)
     die();
 }
 
-function absolute_path($path)
+function url_for($path)
 {
-    $current_uri = $_SERVER['REQUEST_URI'];
-    $current_path = $_SERVER['PATH_INFO'] ?? '';
-    return rtrim($current_uri, $current_path) . $path;
+    $current_uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+    $current_path = $_SERVER['PATH_INFO'] ?? null;
+
+    $root = '';
+    if (is_null($current_path)) {
+        $root = $current_uri;
+    } else {
+        $current_path_len = strlen($current_path);
+        $root = substr($current_uri, 0, -$current_path_len);
+    }
+
+    return $root . $path;
 }
 
 function redirect($path)
 {
-    $target = absolute_path($path);
-    header("location: {$target}");
+    $target = url_for($path);
+    redirect_root($target);
+}
+
+function redirect_root($path)
+{
+    header("location: {$path}");
     die();
 }
 

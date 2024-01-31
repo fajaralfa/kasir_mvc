@@ -16,10 +16,11 @@ function router_run()
     $method = $_SERVER['REQUEST_METHOD'];
 
     if(is_null($path)) {
-        if (str_ends_with($_SERVER['REQUEST_URI'], 'index.php')) {
-            redirect('/');
-        } else {
-            redirect('index.php/');
+        $req_uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+        if (str_ends_with($req_uri, 'index.php')) {
+            redirect_root($req_uri . '/');
+        } else if (str_ends_with($req_uri, '/')) {
+            redirect_root($req_uri . 'index.php/');
         }
     }
 

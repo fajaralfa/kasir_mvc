@@ -1,10 +1,5 @@
 <?php
 
-$c_halaman_utama = fn () => view('home', [
-    'user' => session_get('user'),
-    'messages' => session_get('messages')
-]);
-
 $c_halaman_login = fn () => view('login', [
     'errors' => session_get('errors')
 ]);
