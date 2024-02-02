@@ -36,7 +36,7 @@ CREATE TABLE penjualan (
     waktu DATETIME,
     total_harga INTEGER NOT NULL,
     id_pelanggan INTEGER NOT NULL,
-    id_petugas VARCHAR(35) NOT NULL,
+    id_petugas INTEGER NOT NULL,
     FOREIGN KEY (id_pelanggan) REFERENCES pelanggan(id),
     FOREIGN KEY (id_petugas) REFERENCES petugas(id)
 );
@@ -69,9 +69,9 @@ END$$
 DELIMITER ;
 
 -- SAMPLE DATA
-INSERT INTO petugas (nama, username, password, level) VALUES
-('Administrator', 'admin', 'admin', 'admin'),
-('Petugas', 'petugas', 'petugas', 'petugas');
+INSERT INTO petugas (id, nama, username, password, level) VALUES
+(1, 'Administrator', 'admin', 'admin', 'admin'),
+(2, 'Petugas', 'petugas', 'petugas', 'petugas');
 
 INSERT INTO produk (id, nama, harga) VALUES (1, 'Mobil', 100000000), (2, 'Motor', 20000000);
 
@@ -81,9 +81,9 @@ INSERT INTO pelanggan (id, nama, alamat, nomor_telepon) VALUES
 (1, 'Fajar', 'Cisempur', '086252726'),
 (2, 'Ilham', 'Bantarkalong', '029292823');
 
-INSERT INTO penjualan (id, waktu, total_harga, id_pelanggan, username_petugas) VALUES 
-(1, "2022-04-01 07:00:00", 100000000, 1, 'petugas'),
-(2, "2022-04-02 02:43:32", 40000000, 1, 'petugas');
+INSERT INTO penjualan (id, waktu, total_harga, id_pelanggan, id_petugas) VALUES 
+(1, "2022-04-01 07:00:00", 100000000, 1, 1),
+(2, "2022-04-02 02:43:32", 40000000, 1, 2);
 
 INSERT INTO produk_penjualan_junction (id_produk, jumlah_produk, subtotal, id_penjualan) VALUES
 (1, 1, 100000000, 1),
