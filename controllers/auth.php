@@ -19,6 +19,7 @@ $c_aksi_login = function () {
     }
 
     session_set('user', [
+        'id' => $user['id'],
         'nama' => $user['nama'],
         'username' => $user['username'],
         'level' => $user['level'],
