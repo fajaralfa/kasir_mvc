@@ -13,6 +13,7 @@ $c_daftar_produk = function () {
     view('produk/list', [
         'data_produk' => $data_produk,
         'pesan' => session_get('pesan'),
+        'errors' => session_get('errors'),
     ]);
 };
 
