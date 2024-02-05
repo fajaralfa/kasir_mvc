@@ -15,10 +15,22 @@ $c_tambah_produk_ke_keranjang = function () {
 };
 
 $c_daftar_produk_di_keranjang = function () {
+    global $db;
+
     $data_keranjang = Keranjang::all();
+    
+    $db_data_keranjang = [];
+    foreach ($data_keranjang as $key => $val) {
+        $sql = "SELECT * FROM produk WHERE id = {$key}";
+        $res = $db->query($sql)->fetch_assoc();
+        if (! is_null($res)) {
+            $res['jumlah'] = $val;
+            array_push($db_data_keranjang, $res);
+        }
+    }
 
     view('keranjang/list', [
-        'data_keranjang' => $data_keranjang,
+        'data_keranjang' => $db_data_keranjang,
     ]);
 };
 
