@@ -11,6 +11,7 @@ require 'controllers/home.php';
 require 'controllers/produk.php';
 require 'controllers/pelanggan.php';
 require 'controllers/penjualan.php';
+require 'controllers/keranjang.php';
 
 
 router_add('GET', '/login', $c_halaman_login, $mw_not_logged_in);
@@ -35,9 +36,9 @@ router_add('GET', '/pelanggan/ubah', $c_halaman_ubah_pelanggan, $mw_logged_in);
 router_add('POST', '/pelanggan/ubah', $c_aksi_ubah_pelanggan, $mw_logged_in);
 router_add('GET', '/pelanggan/hapus', $c_aksi_hapus_pelanggan, $mw_logged_in);
 
-router_add('GET', '/penjualan', $c_daftar_penjualan);
-router_add('GET', '/penjualan/tambah', $c_halaman_tambah_penjualan);
-router_add('POST', '/penjualan/tambah', $c_aksi_tambah_penjualan);
+router_add('GET', '/keranjang', $c_daftar_produk_di_keranjang, $mw_logged_in);
+router_add('POST', '/keranjang/tambah', $c_tambah_produk_ke_keranjang, $mw_logged_in);
+router_add('POST', '/keranjang/hapus', $c_hapus_produk_di_keranjang, $mw_logged_in);
 
 
 router_run();
