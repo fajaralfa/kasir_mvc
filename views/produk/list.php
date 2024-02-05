@@ -9,8 +9,16 @@
         <?php foreach ($errors as $e) : ?>
             <div class="alert alert-danger"><?= $e ?></div>
         <?php endforeach ?>
-        <a href="<?= url_for('/produk/tambah') ?>" class="btn btn-primary">Tambah Produk</a>
-        <table class="table table-striped" style="width: auto;">
+        <div class="d-flex gap-5">
+            <a href="<?= url_for('/produk/tambah') ?>" class="btn btn-primary">Tambah Produk</a>
+            <form action="<?= url_for('/produk') ?>" method="get">
+                <div class="d-flex gap-3">
+                    <input type="text" name="nama" id="nama" placeholder="Nama Produk" class="form-control">
+                    <button type="submit" class="btn btn-secondary">Cari</button>
+                </div>
+            </form>
+        </div>
+        <table class="table table-striped mt-4" style="width: auto;">
             <thead>
                 <tr>
                     <td>NO</td>
