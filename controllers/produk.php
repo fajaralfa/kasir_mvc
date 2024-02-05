@@ -8,10 +8,10 @@ $c_daftar_produk = function () {
     if(isset($_GET['nama'])) {
         $sql .= " WHERE nama LIKE '%{$_GET['nama']}%'";
     }
-    $semua_produk = $db->query($sql)->fetch_all(MYSQLI_ASSOC);
+    $data_produk = $db->query($sql)->fetch_all(MYSQLI_ASSOC);
 
-    view('produk/daftar', [
-        'semua_produk' => $semua_produk,
+    view('produk/list', [
+        'data_produk' => $data_produk,
         'pesan' => session_get('pesan'),
     ]);
 };
@@ -27,10 +27,12 @@ $c_aksi_tambah_produk = function () {
 
     $nama = $_POST['nama'];
     $harga = $_POST['harga'];
+    $stok = $_POST['stok'];
 
-    $sql = "INSERT INTO produk (nama, harga) VALUES ('$nama', '$harga')";
-
-    $db->query($sql);
+    $db->begin_transaction();
+    $db->query("INSERT INTO produk (nama, harga) VALUES ('$nama', '$harga')");
+    $db->query("INSERT INTO stok_produk (id_produk, stok) VALUES ($db->insert_id, $stok)");
+    $db->commit();
 
     session_flash('pesan', [
         'Data berhasil ditambahkan',
@@ -75,8 +77,20 @@ $c_aksi_ubah_produk = function () {
 
 $c_aksi_hapus_produk = function () {
     global $db;
+    unset($_SESSION['pesan']);
 
     $id = $_GET['id'];
+
+    $jumlah_pembelian =
+        $db
+            ->query("SELECT COUNT(id_produk) AS jumlah_pembelian FROM produk_penjualan_junction WHERE id_produk = $id")
+            ->fetch_assoc()['jumlah_pembelian'];
+    $pernah_dibeli = $jumlah_pembelian > 0;
+    
+    if ($pernah_dibeli) {
+        session_flash('pesan', ['Tidak bisa menghapus produk, produk sudah ada yang membeli']);
+        redirect('/produk');
+    }
 
     $db->begin_transaction();
     $db->query("DELETE FROM stok_produk WHERE id_produk = {$id}");

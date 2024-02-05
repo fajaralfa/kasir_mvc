@@ -51,23 +51,6 @@ CREATE TABLE produk_penjualan_junction (
     FOREIGN KEY (id_penjualan) REFERENCES produk(id)
 );
 
-DELIMITER $$
-
-CREATE TRIGGER trigger_after_insert_produk
-AFTER INSERT ON produk FOR EACH ROW
-BEGIN
-    INSERT INTO stok_produk (id_produk, stok) VALUES
-    (NEW.id, 0);
-END$$
-
-CREATE TRIGGER trigger_before_delete_produk
-BEFORE DELETE ON produk FOR EACH ROW
-BEGIN
-    DELETE FROM stok_produk WHERE id_produk = OLD.id;
-END$$
-
-DELIMITER ;
-
 -- SAMPLE DATA
 INSERT INTO petugas (id, nama, username, password, level) VALUES
 (1, 'Administrator', 'admin', 'admin', 'admin'),
