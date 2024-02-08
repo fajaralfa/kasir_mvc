@@ -48,7 +48,7 @@ CREATE TABLE produk_penjualan_junction (
     subtotal INTEGER NOT NULL,
     id_penjualan INTEGER NOT NULL,
     FOREIGN KEY (id_produk) REFERENCES produk(id),
-    FOREIGN KEY (id_penjualan) REFERENCES produk(id)
+    FOREIGN KEY (id_penjualan) REFERENCES penjualan(id)
 );
 
 -- SAMPLE DATA
