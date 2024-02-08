@@ -40,5 +40,10 @@ router_add('GET', '/keranjang', $c_daftar_produk_di_keranjang, $mw_logged_in);
 router_add('POST', '/keranjang/tambah', $c_tambah_produk_ke_keranjang, $mw_logged_in);
 router_add('POST', '/keranjang/hapus', $c_hapus_produk_di_keranjang, $mw_logged_in);
 
+router_add('GET', '/penjualan', $c_daftar_penjualan, $mw_logged_in);
+router_add('GET', '/penjualan/detail', $c_detail_penjualan, $mw_logged_in);
+router_add('GET', '/penjualan/tambah', $c_halaman_tambah_penjualan, $mw_logged_in);
+router_add('POST', '/penjualan/tambah', $c_aksi_tambah_penjualan, $mw_logged_in);
+
 
 router_run();
