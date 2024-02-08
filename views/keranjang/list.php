@@ -20,15 +20,16 @@
                     <td>TOTAL HARGA PRODUK</td>
                     <td colspan="3" class="text-center">AKSI</td>
                 </tr>
+            </thead>
             <tbody>
                 <?php
-                    $no = 1;
-                    $total = 0;
+                $no = 1;
+                $total = 0;
                 ?>
                 <?php foreach ($data_keranjang as $produk) : ?>
                     <?php
-                        $total_harga_produk = $produk['harga'] * $produk['jumlah'];
-                        $total += $total_harga_produk;
+                    $total_harga_produk = $produk['harga'] * $produk['jumlah'];
+                    $total += $total_harga_produk;
                     ?>
                     <tr>
                         <td><?= $no++ ?></td>
@@ -51,9 +52,8 @@
                     <td colspan="5" class="fw-bold text-end">Rp. <?= number_format($total) ?></td>
                 </tr>
             </tfoot>
-            </thead>
         </table>
-
-        <?php view('layout/footer') ?>
     </div>
 </div>
+
+<?php view('layout/footer') ?>
