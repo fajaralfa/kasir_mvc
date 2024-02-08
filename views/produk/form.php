@@ -1,3 +1,6 @@
+<?php view('layout/header') ?>
+<?php view('layout/nav') ?>
+
 <main>
     <form action="<?= url_for("/produk/{$target}") ?>" method="post">
         <label for="nama_produk">Nama Produk</label>
@@ -10,3 +13,5 @@
         <button type="submit">Tambah</button>
     </form>
 </main>
+
+<?php view('layout/footer') ?>
