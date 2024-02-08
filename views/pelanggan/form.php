@@ -1,3 +1,6 @@
+<?php view('layout/header') ?>
+<?php view('layout/nav') ?>
+
 <main>
     <form action="<?= url_for("/pelanggan/{$target}") ?>" method="post">
         <?php if ($target == 'ubah') : ?>
@@ -12,3 +15,5 @@
         <button type="submit">Tambah</button>
     </form>
 </main>
+
+<?php view('layout/footer') ?>

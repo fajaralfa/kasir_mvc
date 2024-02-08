@@ -9,7 +9,7 @@ $c_daftar_pelanggan = function () {
     }
     $semua_pelanggan = $db->query($sql)->fetch_all(MYSQLI_ASSOC);
 
-    view('pelanggan/daftar', [
+    view('pelanggan/list', [
         'semua_pelanggan' => $semua_pelanggan,
         'pesan' => session_get('pesan'),
     ]);
