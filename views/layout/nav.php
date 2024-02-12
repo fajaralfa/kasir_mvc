@@ -1,3 +1,8 @@
+<?php
+$user = session_get('user');
+$errors = session_get('errors');
+?>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= url_for('/') ?>">Aplikasi Kasir</a>
@@ -23,9 +28,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?= url_for('/pelanggan') ?>">Pelanggan</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= url_for('/petugas') ?>">Petugas</a>
-                </li>
+                <?php if ($user['level'] == 'admin') : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= url_for('/petugas') ?>">Petugas</a>
+                    </li>
+                <?php endif ?>
             </ul>
         </div>
         <form action="<?= url_for('/logout') ?>" method="post">
@@ -33,3 +40,7 @@
         </form>
     </div>
 </nav>
+
+<?php foreach ($errors as $error) : ?>
+    <div class="alert alert-danger"><?= $error ?></div>
+<?php endforeach ?>
