@@ -46,11 +46,11 @@ router_add('GET', '/penjualan/detail', $c_detail_penjualan, $mw_logged_in);
 router_add('GET', '/penjualan/tambah', $c_halaman_tambah_penjualan, $mw_logged_in);
 router_add('POST', '/penjualan/tambah', $c_aksi_tambah_penjualan, $mw_logged_in);
 
-router_add('GET', '/petugas', $c_daftar_petugas, $mw_logged_in);
-router_add('GET', '/petugas/tambah', $c_halaman_tambah_petugas, $mw_logged_in);
-router_add('POST', '/petugas/tambah', $c_aksi_tambah_petugas, $mw_logged_in);
-router_add('GET', '/petugas/ubah', $c_halaman_ubah_petugas, $mw_logged_in);
-router_add('POST', '/petugas/ubah', $c_aksi_ubah_petugas, $mw_logged_in);
-router_add('GET', '/petugas/hapus', $c_aksi_hapus_petugas, $mw_logged_in);
+router_add('GET', '/petugas', $c_daftar_petugas, $mw_logged_in, $mw_admin_only);
+router_add('GET', '/petugas/tambah', $c_halaman_tambah_petugas, $mw_logged_in, $mw_admin_only);
+router_add('POST', '/petugas/tambah', $c_aksi_tambah_petugas, $mw_logged_in, $mw_admin_only);
+router_add('GET', '/petugas/ubah', $c_halaman_ubah_petugas, $mw_logged_in, $mw_admin_only);
+router_add('POST', '/petugas/ubah', $c_aksi_ubah_petugas, $mw_logged_in, $mw_admin_only);
+router_add('GET', '/petugas/hapus', $c_aksi_hapus_petugas, $mw_logged_in, $mw_admin_only);
 
 router_run();

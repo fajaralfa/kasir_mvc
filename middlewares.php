@@ -13,3 +13,11 @@ $mw_not_logged_in = function () {
         redirect('/');
     }
 };
+
+$mw_admin_only = function () {
+    $user = session_get('user');
+    if ($user['level'] != 'admin') {
+        session_flash('errors', ['Anda bukan admin']);
+        redirect('/');
+    }
+};
